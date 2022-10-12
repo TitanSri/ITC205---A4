@@ -220,12 +220,14 @@ public class Library implements Serializable {
 	        double overDueFine = currentLoan.getFines();      
 	    	System.out.println("Library class patron.incurFine again on discharge!!! "); // for test, need to delete
 			System.out.println("Over due fine: " + overDueFine); // for test, need to delete
-	        patron.incurFine(overDueFine); 		    
+	        patron.incurFine(overDueFine); 	// for test the other incur fine	    
 		}
 		if (isDamaged) {
 		    patron.incurFine(DAMAGE_FEE);
             damagedItems.put(itemId, item);
 		}
+		
+		// these just change the status however the patron discharged is ran again which changes the fine owing
 		currentLoan.discharge(isDamaged);
 		currentLoans.remove(itemId);
 	}
