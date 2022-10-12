@@ -102,8 +102,8 @@ public class Patron implements Serializable {
 
 
 	public void incurFine(double fine) {
-		finesOwing += fine;
-//		System.out.println("Patron class, finesOwing: " + finesOwing); // for test, need to delete
+		finesOwing += fine; // its accumulating here, is this necessary ??
+		System.out.println("Patron class, finesOwing: " + finesOwing); // for test, need to delete
 	}
 	
 	
