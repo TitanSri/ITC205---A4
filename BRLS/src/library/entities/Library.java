@@ -196,6 +196,7 @@ public class Library implements Serializable {
 		    Date dueDate = loan.getDueDate();
 			long daysOverDue = Calendar.getInstance().getDaysDifference(dueDate);
 			double fine = daysOverDue * OVERDUE_FINE_PER_DAY;
+//			System.out.println("Library class, fine: " + fine); // for test, need to delete
 			return fine;
 		}
 		return 0.0;		
@@ -217,6 +218,8 @@ public class Library implements Serializable {
 
 		if (currentLoan.isOverDue()) {
 	        double overDueFine = currentLoan.getFines();      
+//	    	System.out.println("Library class patron.incurFine again on discharge!!! "); // for test, need to delete
+//			System.out.println("Over due fine: " + overDueFine); // for test, need to delete
 	        patron.incurFine(overDueFine); 		    
 		}
 		if (isDamaged) {

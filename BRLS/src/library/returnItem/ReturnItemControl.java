@@ -87,7 +87,8 @@ public class ReturnItemControl {
         }
         ui.display(String.format("\nTotal fines : $%.2f", totalFines));
         
-        currentLoan.getPatron().incurFine(totalFines);
+        // incur fine twice on current loan and discharge
+        currentLoan.getPatron().incurFine(totalFines); 
 		library.dischargeLoan(currentLoan, isDamaged);
 		
 		currentLoan = null;
