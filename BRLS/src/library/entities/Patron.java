@@ -82,7 +82,6 @@ public class Patron implements Serializable {
 	public void dischargeLoan(Loan loan) {
 	    long loanId = loan.getId();
 		if (currentLoans.containsKey(loanId)) {
-//		    finesOwing += loan.getFines(); // test second bug is found here- removing this line
 			currentLoans.remove(loanId);
 		}
 		else {
