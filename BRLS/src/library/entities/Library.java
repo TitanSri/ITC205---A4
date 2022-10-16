@@ -18,7 +18,7 @@ import java.util.Map;
 public class Library implements Serializable {
 	
 	private static final String LIBRARY_FILE = "library.obj";
-	private static final int LOAN_LIMIT = 2;
+	private static final int LOAN_LIMIT = 2; // check the limit is 2 and not 3
 	private static final int LOAN_PERIOD = 2;
 	private static final double OVERDUE_FINE_PER_DAY = 1.0;
 	private static final double MAX_FINES_OWED = 1.0;
