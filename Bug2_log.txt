@@ -1,0 +1,53 @@
+Bug2 bug log:
+
+Simplification (observed)
+H1: Everything is all right until the end of borrow item 2. 
+T1: Inspect code for end of borrow item 2.
+R1: The user can keep borrow 3 items.
+H1: True 
+Commit logs:
+https://github.com/TitanSri/ITC205---A4/commit/1187ba66d2e1f7129da3382fb9fddd56c54d2577 
+
+Tracing 
+H2: There is no restriction 
+T2: Inspect code for restriction in BorrowItemControl>itemScanned();
+R2: library.getNumberOfLoansRemiangForPatron(); line 79 is returning 0
+H2: True 
+Commit logs:
+https://github.com/TitanSri/ITC205---A4/commit/7f1e3cc62792b6198dd1cbec5d9f47ec7521a0ca
+
+H3: The limit is activated after 3 items
+T3: Inspect code for restriction in BorrowItemControl>itemScanned();
+R3: library.getNumberOfLoansRemiangForPatron() – pendingList.sze() < 0; line 79 is returning 0, however 0 – 3 equals -1
+H3: True, the code should be <= to zero and not <
+Commit Logs:
+https://github.com/TitanSri/ITC205---A4/commit/8bb552932535cb2880cbb55f76660133ac8ce26b
+
+H4: After the Loan limit is reached, the system still asks the user to commit the loan
+T4: Inspect BorrowItemUI
+R4: BorrowItemsUI; line 85
+H4: True, 
+Commit logs:
+https://github.com/TitanSri/ITC205---A4/commit/15cca439fc9f3d1af1e6ba11cc82e95ea760bf41 
+
+H5: Lbrary.canPatronBorrow(); is returning true all the time
+T5: Inspect code for Lbrary.canPatronBorrow(); 
+R5: patron.getNumberOfCurrentLoans() == LOAN_LIMIT; line 155 should be => equal or more than
+H5: True
+Commit logs:
+https://github.com/TitanSri/ITC205---A4/commit/9d59c4ee14034535a612017dc588554186cdab17
+
+Resolution
+H6: Lbrary.canPatronBorrow() changed to more than equals to line 155
+T6: Inspect the code for Lbrary.canPatronBorrow()
+R6: Change code if (patron.getNumberOfCurrentLoans() >= LOAN_LIMIT ) { in line 155
+H6: True 
+Commit logs:
+https://github.com/TitanSri/ITC205---A4/commit/a5c7a0eef7c5c39e6c8b93a806481e1f3e33db48 
+
+H7: BorrowItemControl.itemScanned() changed to less than equals to line 80
+T7: Inspect the code for BorrowItemControl.itemScanned()
+R7: Change code if (library.getNumberOfLoansRemainingForPatron(patron) - pendingList.size() <= 0) { in line 155
+H7: True 
+Commit logs:
+https://github.com/TitanSri/ITC205---A4/commit/922212ef3ef98159796b523327f2b23b50c5f3cd

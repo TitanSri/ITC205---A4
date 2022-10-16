@@ -1,0 +1,69 @@
+Bug1 bug log:
+
+Commit logs can be found https://github.com/TitanSri/ITC205---A4/commits/TobyA4 
+
+Simplification (observed)
+H1: Everything is all right until end if the return processing 
+T1: Inspect code for end of return processing.
+R1: Incorrect loan value printed out before end of return processing
+H1: True 
+Commit logs:
+https://github.com/TitanSri/ITC205---A4/commit/e4cdc2c93320da320454bc2c34a720a950177bf4 
+This is the first commit after testing H1, you may notice the system.out.println(); for prior testing was commented out because I forgot to run H1 with a commit.
+
+Tracing 
+H2: Everything is all right until ReturnItemControl.dsichargeLoan>currentLoan.getPatron().incurFine(): line 91
+T2: Inspect code for end of return processing.
+R2: Fine Owing is $2.00
+H2: True 
+Commit logs:
+https://github.com/TitanSri/ITC205---A4/commit/0efe66b415d60614b0580a4551f86c0830cb6224 
+
+H3: Bug is after ReturnItemControl.dsichargeLoan>library.dischargeLoan() : line 92
+T3: Inspect code after discharge for new value
+R3: Fine owing is more than $2.00.
+H3: True, its $4.00 
+Commit Logs:
+https://github.com/TitanSri/ITC205---A4/commit/5eb2b2a1fe7adedef46def39948fb18a31d5b6bc 
+
+H4: Bug is in the Patron.incurFine()
+T4: Inspect code for Patron.incurFine()
+R4: finesOwing += fine; is adding more to the current fine: line 105
+H4: True, its $4.00 (first bug found)
+Commit logs:
+https://github.com/TitanSri/ITC205---A4/commit/5eb2b2a1fe7adedef46def39948fb18a31d5b6bc 
+
+H5: Bug is in the Library.dischargeLoan()
+T5: Inspect code for Library.dischargeLoan()
+R5: currentLoan.dsicharge(): line 231, initiates Loan.discharge>patron.dischargeLoan(); line 85;
+H5: True
+Commit logs:
+https://github.com/TitanSri/ITC205---A4/commit/7b0066e63d39637043d505de410159bb96e7319e 
+
+H6: Bug is in the Patron.dischargeLoan()
+T6: Inspect code for Patron.dischargeLoan()
+R6: finesOwing += loan.getFines(); line 85 is adding $2.00
+H6: True (second bug found), fineOwing is $6.00
+Commit logs:
+https://github.com/TitanSri/ITC205---A4/commit/11552b9ba8be6ed0a23459690ae2a772ddabfc14
+
+Resolution
+H7: remove finesOwing += loan.getFines(); from Patron.dischargeLoan()
+T7: Inspect code for Patron.dischargeLoan()
+R7: comment out line 85; //		    finesOwing += loan.getFines(); // test second bug is found here- removing this line
+H7: True, fineOwing is $4.00
+Commit logs:
+https://github.com/TitanSri/ITC205---A4/commit/7b33834942a3d486f7d6543d7c488517fdc94b73 
+
+H8: H4 patron.incurFine(); is correct however the origin of the call was from Library.dischargeLoan()
+T8: Inspect code for Library.dischargeLoan()
+R8: Library.dischargeLoan(); line 223 contains patron.incurFine(overDueFine); 
+Removing line 223
+H8: True
+Commit logs:
+https://github.com/TitanSri/ITC205---A4/commit/6bd8468dea19d460d07342ab9b1a0b8e15921144
+
+
+
+
+
