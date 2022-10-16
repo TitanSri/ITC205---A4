@@ -79,7 +79,7 @@ public class BorrowItemControl {
 		// i think the bug is here
 		if (library.getNumberOfLoansRemainingForPatron(patron) - pendingList.size() < 0) { // there is a bug here, should be less than or equal to zero
 			ui.display("Loan limit reached");
-			state = ControlState.RESTRICTED; // change the state to restricted
+//			state = ControlState.RESTRICTED; // change the state to restricted maybe??
 			borrowingCompleted();
 		}
 	}
