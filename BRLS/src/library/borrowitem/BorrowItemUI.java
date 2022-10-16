@@ -77,12 +77,13 @@ public class BorrowItemUI {
     				break;					
     				
     			case FINALISING:
+    				// should check the restriction first
     				String answer = getInput("Commit loans? (Y/N): ");
     				if (answer.toUpperCase().equals("N")) {
     					control.cancel();					
     				} 
     				else {
-    					control.commitLoans();
+    					control.commitLoans(); 
     					getInput("Press <any key> to complete ");
     				}
     				break;
