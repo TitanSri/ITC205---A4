@@ -5,9 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import library.returnItem.ReturnItemControl;
-import library.returnItem.ReturnItemUI;
-
 @SuppressWarnings("serial")
 public class Patron implements Serializable {
 
@@ -101,8 +98,7 @@ public class Patron implements Serializable {
 
 
 	public void incurFine(double fine) {
-		finesOwing += fine; // its accumulating here, is this necessary ?? this is one bug but there is another
-		System.out.println("Patron class, finesOwing: " + finesOwing); // for test, need to delete
+		finesOwing += fine; 
 	}
 	
 	
