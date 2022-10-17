@@ -76,8 +76,7 @@ public class BorrowItemControl {
 		for (Item item : pendingList) {
 			ui.display(item);
 		}
-		// i think the bug is here - changing to less than equal to from less than
-		if (library.getNumberOfLoansRemainingForPatron(patron) - pendingList.size() <= 0) { // there is a bug here, should be less than or equal to zero
+		if (library.getNumberOfLoansRemainingForPatron(patron) - pendingList.size() <= 0) { 
 			ui.display("Loan limit reached");
 			borrowingCompleted();
 		}
