@@ -39,9 +39,7 @@ public class Loan implements Serializable {
 		}
 		if (isOverDue()) {
             long daysOverDue = Calendar.getInstance().getDaysDifference(dueDate);
-            System.out.println("Loan class, daysOverDue: " + daysOverDue); // for test, need to delete
             fines = overDueFeePerDay * daysOverDue;
-            System.out.println("Loan class, fines: " + fines); // for test, need to delete
 		}
 	}
 
