@@ -18,7 +18,7 @@ import java.util.Map;
 public class Library implements Serializable {
 	
 	private static final String LIBRARY_FILE = "library.obj";
-	private static final int LOAN_LIMIT = 2; // check the limit is 2 and not 3
+	private static final int LOAN_LIMIT = 2; 
 	private static final int LOAN_PERIOD = 2;
 	private static final double OVERDUE_FINE_PER_DAY = 1.0;
 	private static final double MAX_FINES_OWED = 1.0;
@@ -152,7 +152,7 @@ public class Library implements Serializable {
 
 	
 	public boolean canPatronBorrow(Patron patron) {		
-		if (patron.getNumberOfCurrentLoans() >= LOAN_LIMIT ) { // this should be equal or more than - changed
+		if (patron.getNumberOfCurrentLoans() >= LOAN_LIMIT ) { 
 			return false;
 		}
 		if (patron.finesOwed() >= MAX_FINES_OWED) {
@@ -196,7 +196,6 @@ public class Library implements Serializable {
 		    Date dueDate = loan.getDueDate();
 			long daysOverDue = Calendar.getInstance().getDaysDifference(dueDate);
 			double fine = daysOverDue * OVERDUE_FINE_PER_DAY;
-//			System.out.println("Library class, fine: " + fine); // for test, need to delete
 			return fine;
 		}
 		return 0.0;		
@@ -218,16 +217,14 @@ public class Library implements Serializable {
 
 		if (currentLoan.isOverDue()) {
 	        double overDueFine = currentLoan.getFines();      
-	    	System.out.println("Library class patron.incurFine again on discharge!!! "); // for test, need to delete
-			System.out.println("Over due fine: " + overDueFine); // for test, need to delete
-//	        patron.incurFine(overDueFine); 	// for test the other incur fine - we do not need to charge again	    
+	    	System.out.println("Library class patron.incurFine again on discharge!!! "); 
+			System.out.println("Over due fine: " + overDueFine); 
 		}
 		if (isDamaged) {
 		    patron.incurFine(DAMAGE_FEE);
             damagedItems.put(itemId, item);
 		}
 		
-		// these just change the status however the patron discharged is ran again which changes the fine owing
 		currentLoan.discharge(isDamaged);
 		currentLoans.remove(itemId);
 	}
